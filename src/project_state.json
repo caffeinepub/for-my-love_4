@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 35,
+  "summary": "Build a single-page romantic/love-letter webpage with the existing styled layout (header, animated heart theme, circular photo, message, quote, footer) plus an entrance curtain overlay that prompts the user to click to reveal the page; responsive for mobile.",
+  "architectural_notes": [
+    "Static HTML + CSS page (no JS required).",
+    "Use Google Fonts (Parisienne, Poppins).",
+    "Include a circular hero photo (initially from Unsplash; allow replacing with local/URL image).",
+    "Responsive behavior via media query for smaller screens."
+  ],
+  "known_issues": [
+    "Deployment URL may be unreachable due to DNS resolution issues (NXDOMAIN / site can't be reached) affecting shareability.",
+    "Platform domain (caffeine.wtf) may be unreachable in the user's region/network, blocking sign-up access.",
+    "Entrance curtain overlay opens instantly instead of playing a smooth curtain-opening animation.",
+    "Curtain opening animation may be missing CSS keyframes (e.g., curtain-swish-left / curtain-swish-right), causing panels to snap open instantly instead of animating.",
+    "User reports the draft/preview appears blank (\"I see nothing\" / \"I don't see anything\"), suggesting preview not loading or not updating assets.",
+    "User reports the preview/load time is taking minutes (very slow loading), not seconds as expected.",
+    "User reports the website is \"not live\" (likely still in draft/unpublished state), requiring a Publish/Push Live action for the public link to update."
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-romantic-love-letter-ui-that-recreates-the-provided-html-layout-in-react-tailwind-including-a-centered-header-with-title-and-subtitle-a-circular-photo-section-a-message-card-with-emphasized-phrases-a-centered-quote-section-and-a-footer-signature-line",
+      "title": "Create a single-page romantic love-letter UI that recreates the provided HTML layout in React + Tailwind, including: a centered header with title and subtitle, a circular photo section, a message card with emphasized phrases, a centered quote section, and a footer signature line.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-provided-visual-styling-and-responsive-behavior-using-tailwind-and-minimal-custom-css-only-where-tailwind-is-insufficient-including-warm-pink-peach-gradient-background-elegant-script-styling-for-the-main-title-and-quote-and-mobile-responsiveness-that-scales-the-photo-and-reduces-message-padding-font-size-at-smaller-widths",
+      "title": "Implement the provided visual styling and responsive behavior using Tailwind (and minimal custom CSS only where Tailwind is insufficient), including: warm pink/peach gradient background, elegant script styling for the main title and quote, and mobile responsiveness that scales the photo and reduces message padding/font size at smaller widths.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-subtle-animations-and-hover-interactions-equivalent-to-the-provided-html-css-a-looping-heartbeat-animation-for-the-heart-element-and-a-hover-effect-on-the-photo-that-slightly-scales-it-up-and-increases-the-shadow-glow",
+      "title": "Add subtle animations and hover interactions equivalent to the provided HTML/CSS: a looping heartbeat animation for the heart element and a hover effect on the photo that slightly scales it up and increases the shadow glow.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-choose-and-apply-one-coherent-romantic-visual-theme-consistent-with-the-provided-design-warm-gradient-soft-shadows-elegant-typography-and-enforce-it-consistently-across-spacing-colors-border-radii-and-component-styling-without-introducing-unrelated-product-features",
+      "title": "Choose and apply one coherent, romantic visual theme consistent with the provided design (warm gradient, soft shadows, elegant typography) and enforce it consistently across spacing, colors, border radii, and component styling, without introducing unrelated product features.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-signature-line-in-the-love-letter-page-to-use-the-user-s-name-hemant-replace-the-current-placeholder-text-your-name",
+      "title": "Update the footer/signature line in the love-letter page to use the user's name \"Hemant\" (replace the current placeholder text \"Your Name\").",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-circular-photo-currently-loaded-from-an-unsplash-url-with-the-user-uploaded-image-file-img-20260215-152027-497-jpg-served-as-a-static-frontend-asset-and-keep-the-existing-circular-crop-hover-styling",
+      "title": "Replace the current circular photo (currently loaded from an Unsplash URL) with the user-uploaded image file \"IMG_20260215_152027_497.jpg\" served as a static frontend asset, and keep the existing circular crop/hover styling.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-small-share-link-section-to-the-love-letter-page-ui-that-lets-the-user-set-and-view-a-custom-share-url-e-g-their-own-domain-to-use-instead-of-the-default-deployment-url",
+      "title": "Add a small “Share link” section to the love-letter page UI that lets the user set and view a custom share URL (e.g., their own domain) to use instead of the default deployment URL.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-the-custom-share-url-on-the-client-so-it-remains-set-after-refresh-reopen",
+      "title": "Persist the custom share URL on the client so it remains set after refresh/reopen.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-in-app-guidance-text-english-explaining-what-custom-url-means-and-that-it-must-be-a-domain-the-user-controls-with-a-brief-note-that-dns-hosting-must-point-to-this-app-for-it-to-work",
+      "title": "Provide in-app guidance text (English) explaining what “custom URL” means and that it must be a domain the user controls, with a brief note that DNS/hosting must point to this app for it to work.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-full-screen-entrance-overlay-that-looks-like-closed-curtains-and-blocks-the-love-letter-page-until-the-user-activates-it-showing-the-user-facing-prompt-text-click-here",
+      "title": "Add a full-screen entrance overlay that looks like closed curtains and blocks the love-letter page until the user activates it, showing the user-facing prompt text \"Click here\".",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-curtain-open-reveal-interaction-when-the-user-clicks-taps-the-overlay-or-activates-via-keyboard-the-curtains-animate-open-and-the-overlay-cleanly-disappears-revealing-the-existing-love-letter-page-unchanged-underneath",
+      "title": "Implement a curtain-open reveal interaction: when the user clicks/taps the overlay (or activates via keyboard), the curtains animate open and the overlay cleanly disappears, revealing the existing love-letter page unchanged underneath.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-any-required-tailwind-css-animations-and-styles-for-the-curtain-effect-without-modifying-any-frontend-immutable-paths",
+      "title": "Add any required Tailwind/CSS animations and styles for the curtain effect without modifying any frontend immutable paths.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-existing-curtain-open-interaction-by-adding-a-cute-romantic-animation-layer-that-plays-during-the-curtain-opening-e-g-floating-hearts-sparkles-and-or-a-soft-burst-effect-without-changing-the-underlying-love-letter-page-content-or-layout",
+      "title": "Enhance the existing curtain-open interaction by adding a cute, romantic animation layer that plays during the curtain opening (e.g., floating hearts/sparkles and/or a soft \"burst\" effect), without changing the underlying love-letter page content or layout.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-respect-accessibility-preferences-by-disabling-or-simplifying-the-added-cute-opening-animations-when-the-user-has-prefers-reduced-motion-enabled-while-still-allowing-the-curtain-to-complete-and-reveal-the-page",
+      "title": "Respect accessibility preferences by disabling or simplifying the added cute opening animations when the user has prefers-reduced-motion enabled, while still allowing the curtain to complete and reveal the page.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-any-required-tailwind-css-keyframes-animation-utilities-to-support-the-new-cute-opening-animations-ensuring-the-changes-do-not-modify-any-frontend-immutable-paths",
+      "title": "Add any required Tailwind/CSS keyframes/animation utilities to support the new cute opening animations, ensuring the changes do not modify any frontend immutable paths.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-the-entrance-curtain-opening-interaction-to-feel-more-playful-softer-bouncier-more-fun-while-preserving-the-existing-love-letter-page-content-and-layout-underneath",
+      "title": "Adjust the entrance curtain opening interaction to feel more playful (softer, bouncier, more fun) while preserving the existing love-letter page content and layout underneath.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-cute-animation-layer-that-plays-during-the-curtain-opening-to-match-a-more-playful-vibe-e-g-more-lively-heart-sparkle-motion-variety-slightly-more-whimsical-timing-paths-while-keeping-the-effect-romantic-and-not-visually-overwhelming",
+      "title": "Enhance the cute animation layer that plays during the curtain opening to match a more playful vibe (e.g., more lively heart/sparkle motion variety, slightly more whimsical timing/paths), while keeping the effect romantic and not visually overwhelming.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-accessibility-behavior-for-the-playful-entrance-when-the-user-has-prefers-reduced-motion-enabled-skip-or-significantly-simplify-the-playful-cute-animations-while-still-allowing-the-curtain-to-complete-and-reveal-the-page",
+      "title": "Preserve accessibility behavior for the playful entrance: when the user has prefers-reduced-motion enabled, skip or significantly simplify the playful/cute animations while still allowing the curtain to complete and reveal the page.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-entrance-curtain-overlay-so-it-always-plays-a-smooth-curtain-opening-animation-left-and-right-panels-visibly-animate-apart-instead-of-instantly-revealing-the-page-when-the-user-clicks-taps-presses-enter-space-while-keeping-the-underlying-love-letter-page-content-and-layout-unchanged",
+      "title": "Fix the entrance curtain overlay so it always plays a smooth curtain-opening animation (left and right panels visibly animate apart) instead of instantly revealing the page when the user clicks/taps/presses Enter/Space, while keeping the underlying love-letter page content and layout unchanged.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-accessibility-behavior-when-the-user-has-prefers-reduced-motion-enabled-skip-simplify-the-curtain-and-cute-opening-animations-and-reveal-the-page-without-a-long-animated-sequence-while-still-showing-the-same-english-prompt-text-on-the-overlay-before-activation",
+      "title": "Preserve accessibility behavior: when the user has prefers-reduced-motion enabled, skip/simplify the curtain and cute opening animations and reveal the page without a long animated sequence, while still showing the same English prompt text on the overlay before activation.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-change-the-entrance-curtain-opening-animation-to-complete-in-approximately-1-second-including-matching-the-overlay-completion-timing-fallback-timer-and-any-related-ui-transition-durations-that-are-currently-tied-to-the-curtain-duration",
+      "title": "Change the entrance curtain opening animation to complete in approximately 1 second, including matching the overlay completion timing (fallback timer) and any related UI transition durations that are currently tied to the curtain duration.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-adjust-a-distinct-sparkling-star-effect-layer-that-is-visible-while-the-curtain-is-opening-during-the-1-second-reveal-in-addition-to-the-existing-cute-particles-without-making-the-effect-visually-overwhelming",
+      "title": "Add/adjust a distinct sparkling star effect layer that is visible while the curtain is opening (during the ~1 second reveal), in addition to the existing cute particles, without making the effect visually overwhelming.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-reduced-motion-behavior-for-the-updated-1-second-curtain-reveal-and-sparkling-star-effects-when-the-user-has-prefers-reduced-motion-enabled-avoid-the-animated-star-sparkle-sequence-and-reveal-without-a-long-animation-while-keeping-the-overlay-prompt-text-in-english-unchanged",
+      "title": "Preserve reduced-motion behavior for the updated ~1 second curtain reveal and sparkling star effects: when the user has prefers-reduced-motion enabled, avoid the animated star sparkle sequence and reveal without a long animation while keeping the overlay prompt text in English unchanged.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-entrance-curtain-overlay-so-the-left-and-right-curtain-panels-always-visibly-animate-apart-rather-than-snapping-open-when-the-user-clicks-taps-presses-enter-space-while-keeping-the-underlying-love-letter-page-content-and-layout-unchanged",
+      "title": "Fix the entrance curtain overlay so the left and right curtain panels always visibly animate apart (rather than snapping open) when the user clicks/taps/presses Enter/Space, while keeping the underlying love-letter page content and layout unchanged.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-curtain-open-completion-logic-reliably-waits-for-the-actual-curtain-animations-to-finish-and-only-uses-the-fallback-timer-when-animation-events-do-not-fire-so-the-page-is-not-revealed-early-due-to-missing-incorrect-animation-end-events",
+      "title": "Ensure the curtain open completion logic reliably waits for the actual curtain animations to finish (and only uses the fallback timer when animation events do not fire), so the page is not revealed early due to missing/incorrect animation end events.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-cute-particles-and-sparkling-star-layers-so-their-tailwind-animation-classes-are-not-dynamically-constructed-in-a-way-that-prevents-tailwind-from-generating-the-required-css-ensuring-hearts-sparkles-stars-reliably-animate-during-the-1-second-curtain-opening-and-are-skipped-simplified-for-prefers-reduced-motion",
+      "title": "Fix the cute particles and sparkling star layers so their Tailwind animation classes are not dynamically constructed in a way that prevents Tailwind from generating the required CSS, ensuring hearts/sparkles/stars reliably animate during the ~1 second curtain opening (and are skipped/simplified for prefers-reduced-motion).",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-entrance-experience-to-visually-match-the-user-provided-reference-screenshot-screenshot-2026-02-18-11-40-55-913-com-instagram-android-edit-jpg-show-a-centered-rounded-greeting-card-on-a-soft-pink-purple-background-with-the-english-headline-text-happy-valentine-s-day-and-a-cute-heart-face-illustration-instead-of-the-current-curtain-panel-entrance",
+      "title": "Update the entrance experience to visually match the user-provided reference screenshot (Screenshot_2026-02-18-11-40-55-913_com.instagram.android-edit.jpg): show a centered, rounded greeting card on a soft pink/purple background with the English headline text “Happy Valentine’s day!” and a cute heart face illustration, instead of the current curtain-panel entrance.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-tap-click-keyboard-enter-space-activation-on-the-new-greeting-card-entrance-that-plays-a-short-1-second-reveal-animation-and-then-dismisses-the-overlay-reliably-calling-the-existing-completion-callback-only-after-the-animation-finishes-with-a-fallback-timer-if-animation-events-do-not-fire",
+      "title": "Implement a tap/click/keyboard (Enter/Space) activation on the new greeting-card entrance that plays a short (~1 second) reveal animation and then dismisses the overlay, reliably calling the existing completion callback only after the animation finishes (with a fallback timer if animation events do not fire).",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-accessibility-behavior-for-the-new-entrance-when-the-user-has-prefers-reduced-motion-enabled-avoid-the-animated-reveal-sequence-and-instead-perform-a-near-immediate-reveal-while-keeping-all-entrance-user-facing-text-in-english",
+      "title": "Preserve accessibility behavior for the new entrance: when the user has prefers-reduced-motion enabled, avoid the animated reveal sequence and instead perform a near-immediate reveal while keeping all entrance user-facing text in English.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-entrance-greeting-card-headline-text-in-the-entrance-overlay-to-exactly-my-feelings-for-you-replacing-the-current-happy-valentine-s-day-text",
+      "title": "Update the entrance greeting-card headline text in the entrance overlay to exactly: \"my Feelings for you\" (replacing the current \"Happy Valentine's day!\" text).",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-entrance-greeting-card-headline-text-color-pinkish-avoid-red-headline-text-while-keeping-the-rest-of-the-entrance-overlay-layout-animation-behavior-unchanged",
+      "title": "Make the entrance greeting-card headline text color pinkish (avoid red headline text), while keeping the rest of the entrance overlay layout/animation behavior unchanged.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-entrance-overlay-reveal-so-it-feels-like-a-short-cinematic-video-moment-continuous-motion-and-atmosphere-rather-than-a-static-presentation-style-transition-while-keeping-the-existing-entrance-layout-content-headline-text-heart-illustration-and-hint-text-and-the-underlying-love-letter-page-unchanged",
+      "title": "Update the entrance overlay reveal so it feels like a short, cinematic “video” moment (continuous motion and atmosphere) rather than a static presentation-style transition, while keeping the existing entrance layout/content (headline text, heart illustration, and hint text) and the underlying love-letter page unchanged.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-cinematic-style-visual-polish-to-the-entrance-overlay-during-the-reveal-e-g-subtle-vignette-soft-glow-and-or-light-film-grain-style-texture-achieved-with-css-ensuring-it-remains-romantic-and-not-visually-overwhelming",
+      "title": "Add cinematic-style visual polish to the entrance overlay during the reveal (e.g., subtle vignette, soft glow, and/or light film-grain style texture achieved with CSS), ensuring it remains romantic and not visually overwhelming.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-accessibility-behavior-for-the-updated-video-like-entrance-when-prefers-reduced-motion-reduce-is-enabled-avoid-the-cinematic-motion-heavy-sequence-and-instead-reveal-near-immediately-while-keeping-the-same-entrance-text-and-maintaining-a-non-distracting-static-appearance",
+      "title": "Preserve accessibility behavior for the updated video-like entrance: when `prefers-reduced-motion: reduce` is enabled, avoid the cinematic motion-heavy sequence and instead reveal near-immediately while keeping the same entrance text and maintaining a non-distracting static appearance.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-updated-entrance-reveal-completion-logic-remains-reliable-call-the-existing-oncomplete-callback-only-after-the-updated-reveal-animation-finishes-using-a-fallback-timer-only-if-animation-transition-end-events-do-not-fire",
+      "title": "Ensure the updated entrance reveal completion logic remains reliable: call the existing `onComplete` callback only after the updated reveal animation finishes, using a fallback timer only if animation/transition end events do not fire.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-photo-gallery-section-to-the-love-letter-page-that-displays-the-two-newly-uploaded-images-img-20260215-152813-121-jpg-and-img-20260202-224631-789-jpg-as-additional-photos-without-changing-the-existing-main-circular-hero-photo-img-20260215-152027-497-jpg-message-content-quote-share-link-section-footer-or-entrance-overlay-behavior",
+      "title": "Add a new photo gallery section to the love-letter page that displays the two newly uploaded images (IMG_20260215_152813_121.jpg and IMG_20260202_224631_789.jpg) as additional photos, without changing the existing main circular hero photo (IMG_20260215_152027_497.jpg), message content, quote, share link section, footer, or entrance overlay behavior.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-serve-the-uploaded-images-img-20260215-152813-121-jpg-and-img-20260202-224631-789-jpg-as-static-frontend-assets-and-reference-them-via-stable-paths-e-g-assets-filename-from-the-new-gallery-section",
+      "title": "Serve the uploaded images IMG_20260215_152813_121.jpg and IMG_20260202_224631_789.jpg as static frontend assets and reference them via stable paths (e.g., /assets/<filename>) from the new gallery section.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-photo-gallery-section-on-the-love-letter-page-to-display-the-photos-in-a-polaroid-style-collage-layout-matching-the-visual-style-of-the-uploaded-reference-image-screenshot-2026-02-18-11-41-22-162-com-instagram-android-edit-jpg-overlapping-tilted-polaroid-frames-with-a-pinned-taped-look-on-a-dark-rounded-card-background-with-small-romantic-doodles-e-g-hearts-as-subtle-decoration",
+      "title": "Update the existing “Photo Gallery” section on the love-letter page to display the photos in a polaroid-style collage layout matching the visual style of the uploaded reference image (Screenshot_2026-02-18-11-41-22-162_com.instagram.android-edit.jpg): overlapping tilted polaroid frames with a pinned/taped look on a dark, rounded card background, with small romantic doodles (e.g., hearts) as subtle decoration.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-polaroid-collage-gallery-styling-is-responsive-and-remains-visually-pleasing-on-mobile-screens-preserving-readable-spacing-and-avoiding-horizontal-overflow",
+      "title": "Ensure the polaroid collage gallery styling is responsive and remains visually pleasing on mobile screens, preserving readable spacing and avoiding horizontal overflow.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-photo-gallery-polaroid-collage-layout-to-match-the-positioning-stacking-shown-in-the-uploaded-reference-image-screenshot-2026-02-18-11-41-22-162-com-instagram-android-edit-1-jpg-three-overlapping-polaroids-arranged-in-a-tighter-cluster-with-a-clear-top-left-bottom-left-and-right-placement-similar-tilt-angles-and-a-visually-balanced-composition-within-the-dark-rounded-card",
+      "title": "Update the Photo Gallery polaroid collage layout to match the positioning/stacking shown in the uploaded reference image \"Screenshot_2026-02-18-11-41-22-162_com.instagram.android-edit-1.jpg\" (three overlapping polaroids arranged in a tighter cluster with a clear top-left, bottom-left, and right placement, similar tilt angles, and a visually balanced composition within the dark rounded card).",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-the-displayed-size-of-the-polaroid-photos-in-the-photo-gallery-so-each-image-is-noticeably-bigger-than-the-current-implementation-while-preserving-responsiveness-desktop-larger-mobile-scaled-down-appropriately-and-keeping-the-collage-overlap-aesthetically-pleasing",
+      "title": "Increase the displayed size of the polaroid photos in the Photo Gallery so each image is noticeably bigger than the current implementation, while preserving responsiveness (desktop larger; mobile scaled down appropriately) and keeping the collage overlap aesthetically pleasing.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-visible-in-app-notice-explaining-that-the-page-may-be-in-draft-preview-mode-and-that-making-it-publicly-live-requires-using-the-platform-s-publish-push-live-action-outside-the-page",
+      "title": "Add a visible in-app notice explaining that the page may be in draft/preview mode and that making it publicly live requires using the platform’s “Publish / Push Live” action outside the page.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-share-link-clarity-by-labeling-the-default-url-as-the-current-preview-deployment-origin-and-adding-concise-troubleshooting-guidance-when-the-site-is-not-reachable-e-g-dns-region-network-issues-without-adding-any-new-backend-logic",
+      "title": "Improve share-link clarity by labeling the default URL as the current preview/deployment origin and adding concise troubleshooting guidance when the site is not reachable (e.g., DNS/region/network issues), without adding any new backend logic.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-entire-entrance-overlay-screen-to-look-and-feel-very-cute-while-keeping-the-underlying-love-letter-page-content-layout-unchanged-once-the-overlay-dismisses",
+      "title": "Redesign the entire entrance overlay screen to look and feel “very cute” while keeping the underlying love-letter page (content + layout) unchanged once the overlay dismisses.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-the-entrance-overlay-headline-text-exactly-as-my-feelings-for-you-and-keep-the-headline-color-pinkish-avoid-red-for-the-headline",
+      "title": "Keep the entrance overlay headline text exactly as: \"my Feelings for you\" and keep the headline color pinkish (avoid red for the headline).",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-redesigned-cute-entrance-overlay-remains-fully-activatable-via-tap-click-and-keyboard-enter-space-and-dismisses-via-a-short-reveal-sequence-of-approximately-1-second-calling-the-existing-completion-callback-only-after-the-reveal-animation-finishes-with-a-fallback-timer-if-animation-transition-end-events-do-not-fire",
+      "title": "Ensure the redesigned cute entrance overlay remains fully activatable via tap/click and keyboard (Enter/Space) and dismisses via a short reveal sequence of approximately 1 second, calling the existing completion callback only after the reveal animation finishes (with a fallback timer if animation/transition end events do not fire).",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-accessibility-behavior-for-the-redesigned-cute-entrance-when-prefers-reduced-motion-reduce-is-enabled-avoid-the-motion-heavy-reveal-sequence-and-instead-dismiss-the-overlay-near-immediately-while-keeping-all-entrance-user-facing-text-in-english",
+      "title": "Preserve accessibility behavior for the redesigned cute entrance: when `prefers-reduced-motion: reduce` is enabled, avoid the motion-heavy reveal sequence and instead dismiss the overlay near-immediately while keeping all entrance user-facing text in English.",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a romantic single-page love-letter website layout (header, circular photo, message card, quote, footer) with responsive styling.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add subtle animations and interactive hover effects (e.g., heartbeat animation, photo hover scale/shadow).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Personalize the footer/signature line to use the user's name (set last/sign-off name to \"Hemant\").",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Replace the hero/circular photo with the user's provided photo (support using a user-supplied image).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Provide a custom URL/domain (or short link) for sharing the deployed love-letter site instead of the default caffeineapp.xyz subdomain.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add an entrance curtain/overlay screen with a \"Click here\" prompt that the user taps/clicks to reveal the love-letter page (curtain open/reveal effect).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add cute/opening animations for the entrance curtain reveal (enhance the curtain-open interaction when it opens).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Adjust the curtain-opening/cute reveal animations to feel more playful (softer, more fun vibe during the entrance reveal).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "During the entrance curtain opening, add sparkling star effects and set the opening animation duration to ~1 second.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update the entrance curtain/reveal interaction to match the user's provided reference (\"make the entrance like this\").",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Update the entrance greeting-card headline text to “my Feelings for you” (replacing “Happy Valentine’s day!”) and style that text in a pinkish color.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Adjust the entrance/reveal experience to feel more like a video (cinematic/continuous animation) rather than a static presentation-style transition.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Include a few additional images in the love-letter webpage (beyond the main circular hero photo).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Place the image(s) on the page in the specific style/layout the user indicates (\"Put image in this type\"), matching the referenced example.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Proceed with a full redesign of the entrance screen to make it \"very cute\" while keeping the headline text exactly \"my Feelings for you\".",
+      "reqIds": [],
+      "status": "in_progress"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "For My Love",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,21 @@
+{
+  "backend/main.mo": "Empty Motoko actor definition.",
+  "feature_evidence.json": "Feature evidence report listing features, related frontend files, components, tests, and confidence levels.",
+  "frontend-file-summaries.txt": "Pre-written summaries describing the purpose of each frontend file.",
+  "frontend/index.css": "Tailwind base and custom OKLCH theme variables defining light/dark palettes and global element styling.",
+  "frontend/index.html": "HTML entry point containing root div and script loader for the React app.",
+  "frontend/src/App.tsx": "Main React app managing curtain overlay state and rendering the love-letter page with gallery and share section.",
+  "frontend/src/components/CurtainCuteAnimationLayer.tsx": "Animation layer rendering floating hearts, sparkles, and particles with motion‑safe animations and reduced‑motion fallback.",
+  "frontend/src/components/CurtainCuteEntranceCard.tsx": "Cute entrance card component with animated hearts, sparkles, and a kawaii heart graphic that scales and fades during reveal.",
+  "frontend/src/components/CurtainEntranceOverlay.tsx": "Interactive entrance overlay handling reduced motion, reveal animation, and completion callbacks.",
+  "frontend/src/components/CurtainStarSparkleLayer.tsx": "Generates animated star SVG elements with varied positions, delays, and sizes for a sparkle effect.",
+  "frontend/src/components/PolaroidCollageGallery.tsx": "Displays a decorative polaroid-style collage with themed images and Valentine's Day text.",
+  "frontend/src/components/ShareLinkSection.tsx": "UI for viewing, copying, customizing, and resetting a shareable URL with validation and alerts.",
+  "frontend/src/hooks/useActor.ts": "Creates and manages a backend actor tied to Internet Identity, refetching dependent queries on change.",
+  "frontend/src/hooks/useCustomShareUrl.ts": "Manages a user-defined share URL with localStorage persistence and validation.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides Internet Identity auth context, handling login, stored identities, and status tracking.",
+  "frontend/src/index.css": "Global Tailwind setup with romantic-themed CSS variables, fonts, and utility classes.",
+  "frontend/src/main.tsx": "Application entry point initializing React, QueryClient, and Internet Identity provider.",
+  "frontend/tailwind.config.js": "Tailwind config extending custom romantic color palette, fonts, radii, shadows, and multiple animation keyframes.",
+  "project_state.json": "Project state describing a romantic SPA webpage, architectural notes, known issues, and existing feature definitions."
+}

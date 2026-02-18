@@ -1,0 +1,95 @@
+{
+  "kind": "build_request",
+  "title": "Redesign the entrance overlay to be very cute (keep headline text)",
+  "projectName": "Love Letter Reveal",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-44",
+      "text": "Redesign the entire entrance overlay screen to look and feel “very cute” while keeping the underlying love-letter page (content + layout) unchanged once the overlay dismisses.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Change the entrence and make it very cute"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On initial load, users see a newly redesigned entrance overlay (not just minor tweaks) that clearly reads as “very cute”.",
+        "After the reveal completes, the existing love-letter page appears with the same layout and content as before."
+      ]
+    },
+    {
+      "id": "REQ-45",
+      "text": "Keep the entrance overlay headline text exactly as: \"my Feelings for you\" and keep the headline color pinkish (avoid red for the headline).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "1 ,3",
+          "Keep the current headline “my Feelings for you,”",
+          "Yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The entrance headline text is exactly \"my Feelings for you\" (same casing and spacing).",
+        "The headline color is pinkish and not red."
+      ]
+    },
+    {
+      "id": "REQ-46",
+      "text": "Ensure the redesigned cute entrance overlay remains fully activatable via tap/click and keyboard (Enter/Space) and dismisses via a short reveal sequence of approximately 1 second, calling the existing completion callback only after the reveal animation finishes (with a fallback timer if animation/transition end events do not fire).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Implement a tap/click/keyboard (Enter/Space) activation on the new greeting-card entrance that plays a short (~1 second) reveal animation and then dismisses the overlay, reliably calling the existing completion callback only after the animation finishes (with a fallback timer if animation events do not fire)."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Click/tap on the overlay triggers the reveal and dismiss sequence.",
+        "Pressing Enter or Space while the overlay is focused triggers the reveal and dismiss sequence.",
+        "The reveal completes in ~1 second (±250ms).",
+        "`onComplete` is invoked only after the reveal animation completes; a fallback timer prevents getting stuck if animation events do not fire."
+      ]
+    },
+    {
+      "id": "REQ-47",
+      "text": "Preserve accessibility behavior for the redesigned cute entrance: when `prefers-reduced-motion: reduce` is enabled, avoid the motion-heavy reveal sequence and instead dismiss the overlay near-immediately while keeping all entrance user-facing text in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Use English for any user-facing text in the build request.",
+          "Preserve accessibility behavior for the new entrance: when the user has prefers-reduced-motion enabled, avoid the animated reveal sequence and instead perform a near-immediate reveal while keeping all entrance user-facing text in English."
+        ]
+      },
+      "acceptanceCriteria": [
+        "With `prefers-reduced-motion: reduce`, activating the overlay dismisses it near-immediately (no long animation).",
+        "All entrance text shown to the user remains in English."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any frontend immutable paths listed in SYSTEM_CONTEXT.",
+    "Do not add new backend canisters/services or external integrations; keep this change frontend-only.",
+    "Keep all user-facing text in English."
+  ],
+  "nonGoals": [
+    "Do not change the love-letter page body content (message, quote, gallery, share-link section, footer signature).",
+    "Do not change backend logic (Motoko actor remains unchanged).",
+    "Do not introduce authentication, payments, real-time features, or any unrelated product features."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
