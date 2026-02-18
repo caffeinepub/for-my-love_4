@@ -1,12 +1,13 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 35,
+  "projectStateVersion": 43,
   "summary": "Build a single-page romantic/love-letter webpage with the existing styled layout (header, animated heart theme, circular photo, message, quote, footer) plus an entrance curtain overlay that prompts the user to click to reveal the page; responsive for mobile.",
   "architectural_notes": [
     "Static HTML + CSS page (no JS required).",
     "Use Google Fonts (Parisienne, Poppins).",
     "Include a circular hero photo (initially from Unsplash; allow replacing with local/URL image).",
-    "Responsive behavior via media query for smaller screens."
+    "Responsive behavior via media query for smaller screens.",
+    "Photo Gallery image set selection: use the last three uploaded images as the gallery sources (replacing the previous set)."
   ],
   "known_issues": [
     "Deployment URL may be unreachable due to DNS resolution issues (NXDOMAIN / site can't be reached) affecting shareability.",
@@ -15,7 +16,9 @@
     "Curtain opening animation may be missing CSS keyframes (e.g., curtain-swish-left / curtain-swish-right), causing panels to snap open instantly instead of animating.",
     "User reports the draft/preview appears blank (\"I see nothing\" / \"I don't see anything\"), suggesting preview not loading or not updating assets.",
     "User reports the preview/load time is taking minutes (very slow loading), not seconds as expected.",
-    "User reports the website is \"not live\" (likely still in draft/unpublished state), requiring a Publish/Push Live action for the public link to update."
+    "User reports the website is \"not live\" (likely still in draft/unpublished state), requiring a Publish/Push Live action for the public link to update.",
+    "Photo gallery images appear too small and laid out in a simple series rather than the intended aesthetic polaroid-collage style (needs larger photos + better overlap/composition).",
+    "Some selected elements are appearing at the front/top of the page instead of at the end; ordering/placement needs to be adjusted so the grouped elements appear last."
   ],
   "isFixRequest": false,
   "existing_features": [
@@ -394,6 +397,62 @@
         "REQ-47"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-fix-the-photo-gallery-so-the-three-images-are-clearly-visible-not-missing-not-broken-and-ensure-the-gallery-always-shows-three-photos-not-fewer-on-both-desktop-and-mobile",
+      "title": "Fix the Photo Gallery so the three images are clearly visible (not missing/not broken), and ensure the gallery always shows three photos (not fewer) on both desktop and mobile.",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-photo-gallery-polaroid-collage-to-match-the-uploaded-reference-screenshot-screenshot-2026-02-18-13-48-59-608-com-android-chrome-edit-jpg-the-photos-should-be-larger-overlapping-in-a-tight-cluster-not-in-a-simple-series-row-placed-within-a-dark-rounded-card-background-with-small-heart-decoration-near-the-top-right",
+      "title": "Update the Photo Gallery polaroid collage to match the uploaded reference screenshot (Screenshot_2026-02-18-13-48-59-608_com.android.chrome-edit.jpg): the photos should be larger, overlapping in a tight cluster (not in a simple series/row), placed within a dark rounded card background, with small heart decoration near the top-right.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-responsiveness-and-cropping-for-the-polaroid-photos-so-they-do-not-look-awkwardly-cut-off-on-mobile-keep-faces-subjects-centered-as-much-as-possible-while-preserving-the-polaroid-square-near-square-look",
+      "title": "Improve responsiveness and cropping for the polaroid photos so they do not look awkwardly cut off on mobile: keep faces/subjects centered as much as possible while preserving the polaroid square/near-square look.",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-all-user-facing-text-in-english-and-do-not-change-the-existing-love-letter-page-content-header-message-quote-share-link-section-footer-outside-of-the-photo-gallery-section-while-implementing-these-gallery-fixes",
+      "title": "Keep all user-facing text in English and do not change the existing love-letter page content (header, message, quote, share link section, footer) outside of the Photo Gallery section while implementing these gallery fixes.",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-photo-gallery-polaroid-collage-to-display-the-last-three-uploaded-images-as-the-three-gallery-photos-replacing-the-current-three-gallery-image-sources",
+      "title": "Update the Photo Gallery (polaroid collage) to display the last three uploaded images as the three gallery photos, replacing the current three gallery image sources.",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-element-at-xpath-html-1-body-1-div-1-div-1-div-4-div-7-div-1-to-be-centered-both-horizontally-and-vertically-in-the-viewport-and-restyled-to-look-noticeably-cute-while-preserving-the-existing-sharelinksection-content-and-functionality-inside-it",
+      "title": "Update ONLY the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/div[4]/div[7]/div[1]` to be centered both horizontally and vertically (in the viewport) and restyled to look noticeably “cute” while preserving the existing ShareLinkSection content and functionality inside it.",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-move-the-four-selected-elements-so-they-appear-together-as-the-last-content-within-their-current-parent-container-preserving-their-internal-order-and-without-changing-any-other-parts-of-the-page-the-elements-to-move-are-exactly-those-located-at-these-xpaths-1-html-1-body-1-div-1-div-2-div-5-div-1-2-html-1-body-1-div-1-div-2-div-5-div-1-div-2-div-1-div-1-3-html-1-body-1-div-1-div-2-div-5-div-1-div-2-div-3-div-1-4-html-1-body-1-div-1-div-2-div-5-div-1-div-2-div-4-p-1",
+      "title": "Move the four selected elements so they appear together as the last content within their current parent container, preserving their internal order and without changing any other parts of the page. The elements to move are exactly those located at these XPaths: (1) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]`, (2) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]`, (3) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]/div[2]/div[3]/div[1]`, (4) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]/div[2]/div[4]/p[1]`.",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -486,6 +545,38 @@
       "summary": "Proceed with a full redesign of the entrance screen to make it \"very cute\" while keeping the headline text exactly \"my Feelings for you\".",
       "reqIds": [],
       "status": "in_progress"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Update the Photo Gallery to display the last three uploaded images (ensure all three are visible).",
+      "reqIds": [],
+      "status": "in_progress"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Serve the three selected gallery images as static frontend assets and reference them via stable /assets/<filename> paths used by the gallery component.",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Center the selected element both horizontally and vertically and restyle it to look “cute” (visual polish), using any approach that looks best.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Remove all three currently selected elements from the page (delete the elements entirely, not just their inner text/content).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Move the four selected elements together as a group to appear last (at the bottom) within their parent container, preserving their internal order.",
+      "reqIds": [],
+      "status": "pending"
     }
   ],
   "gameProjectType": "none",

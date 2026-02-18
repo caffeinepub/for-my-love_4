@@ -1,97 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Cute entrance overlay redesign (headline preserved)",
+  "title": "Move selected Share Link group to end of container (Love Letter Page)",
   "requirements": [
     {
-      "id": "REQ-44",
-      "summary": "Redesign the entrance overlay to feel distinctly “very cute” while leaving the underlying love-letter page unchanged after dismissal.",
+      "id": "REQ-55",
+      "summary": "Reorder the Share Link section so the specified four DOM elements render consecutively at the end of their current parent container without changing any other page content.",
       "acceptanceCriteria": [
-        "On initial load, users see a newly redesigned entrance overlay (not just minor tweaks) that clearly reads as “very cute”.",
-        "After the reveal completes, the existing love-letter page appears with the same layout and content as before."
+        "All four selected elements are rendered consecutively as a single group at the end (bottom) of their parent container, not before other sibling content.",
+        "The relative order of the four selected elements remains the same as before the change.",
+        "No other sections/content outside the selected elements are moved, removed, restyled, or otherwise changed.",
+        "All user-facing text remains in English (no new non-English strings introduced as part of this change)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/CurtainCuteEntranceCard.tsx",
-          "operation": "create",
-          "description": "Create a new cute-themed entrance card UI used by the overlay (pastel/valentine styling, decorative elements). Use shadcn-ui (e.g., Card) where appropriate to structure the card layout. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/CurtainEntranceOverlay.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Replace the current cinematic entrance layout with the new cute entrance design, composing the new CurtainCuteEntranceCard and (optionally) the existing CurtainCuteAnimationLayer for cute ambient hearts/sparkles while the overlay is visible. Ensure overlay dismissal only hides the overlay and does not alter the love-letter page layout/content."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add/adjust CSS utility classes specifically for the cute entrance overlay visuals (background, vignette/glow, card decorations) and ensure any referenced class names match what the overlay uses (avoid undefined cinematic-* class usage). Keep changes scoped to entrance overlay styling only."
-        }
-      ]
-    },
-    {
-      "id": "REQ-45",
-      "summary": "Preserve the entrance headline text exactly and keep its color pinkish (not red).",
-      "acceptanceCriteria": [
-        "The entrance headline text is exactly \"my Feelings for you\" (same casing and spacing).",
-        "The headline color is pinkish and not red."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/CurtainCuteEntranceCard.tsx",
-          "operation": "modify",
-          "description": "Ensure the headline string is exactly \"my Feelings for you\" and style it with a clearly pinkish color token/class (avoid red hues for the headline). If using shadcn-ui typography patterns within the card layout, verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/CurtainEntranceOverlay.tsx",
-          "operation": "modify",
-          "description": "Wire the headline rendering exclusively through the cute entrance card so the exact headline text and pinkish styling are consistently applied by the overlay."
-        }
-      ]
-    },
-    {
-      "id": "REQ-46",
-      "summary": "Keep the cute entrance fully activatable via click/tap and keyboard (Enter/Space) and dismiss via a ~1s reveal sequence, calling onComplete only after the animation finishes with a fallback timer.",
-      "acceptanceCriteria": [
-        "Click/tap on the overlay triggers the reveal and dismiss sequence.",
-        "Pressing Enter or Space while the overlay is focused triggers the reveal and dismiss sequence.",
-        "The reveal completes in ~1 second (±250ms).",
-        "`onComplete` is invoked only after the reveal animation completes; a fallback timer prevents getting stuck if animation events do not fire."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/CurtainEntranceOverlay.tsx",
-          "operation": "modify",
-          "description": "Implement activation and dismissal behavior for the redesigned overlay: ensure click/tap triggers reveal, Enter/Space triggers reveal when focused, and onComplete fires only after the ~1s reveal animation ends. Keep/strengthen the fallback timer to prevent stuck overlays if animation/transition end events do not fire."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "If the redesigned cute entrance uses a new Tailwind animation name (instead of the existing cinematic-reveal), register/safelist the animation so it is generated and can be reliably detected for completion timing (~1s)."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "If needed for reliability, add any supporting CSS for the cute reveal sequence (ensuring it runs ~1s) while keeping the animation completion detectable by the overlay’s event handling."
-        }
-      ]
-    },
-    {
-      "id": "REQ-47",
-      "summary": "Respect prefers-reduced-motion by avoiding motion-heavy reveal and dismissing near-immediately, keeping all entrance text in English.",
-      "acceptanceCriteria": [
-        "With `prefers-reduced-motion: reduce`, activating the overlay dismisses it near-immediately (no long animation).",
-        "All entrance text shown to the user remains in English."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/CurtainEntranceOverlay.tsx",
-          "operation": "modify",
-          "description": "Ensure prefers-reduced-motion behavior remains: when reduced motion is enabled, activation dismisses near-immediately (minimal/no animation) and still calls onComplete reliably. Confirm keyboard accessibility remains intact under reduced motion."
-        },
-        {
-          "path": "frontend/src/components/CurtainCuteEntranceCard.tsx",
-          "operation": "modify",
-          "description": "Review/update any user-facing entrance text introduced by the redesign to ensure it remains English-only (including any hints/labels). If using shadcn-ui components (e.g., Button) for the call-to-action text, verify the component's usage instructions before implementing."
+          "description": "Move the existing Share Link Section wrapper (the element corresponding to /html[1]/body[1]/div[1]/div[2]/div[5]/div[1] and its specified descendant nodes) to the end of its current parent container by reordering only that existing JSX block so it renders after the footer, preserving internal order and making no other content/layout changes."
         }
       ]
     }

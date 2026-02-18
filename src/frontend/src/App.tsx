@@ -65,17 +65,17 @@ export default function App() {
           <PolaroidCollageGallery />
         </div>
 
-        {/* Share Link Section */}
-        <div className="mt-10 md:mt-12 w-full flex justify-center px-4">
-          <ShareLinkSection />
-        </div>
-
         {/* Footer */}
         <footer className="mt-12 md:mt-16 mb-6 text-base md:text-lg text-romantic-footer text-center select-none">
           With all my love,
           <br />
           <strong>Hemant</strong>
         </footer>
+
+        {/* Share Link Section - Centered & Cute */}
+        <div className="share-link-shell">
+          <ShareLinkSection />
+        </div>
       </div>
     </>
   );

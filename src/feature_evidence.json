@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-redesign-the-entire-entrance-overlay-screen-to-look-and-feel-very-cute-while-keeping-the-underlying-love-letter-page-content-layout-unchanged-once-the-overlay-dismisses",
-      "featureTitle": "Redesign the entire entrance overlay screen to look and feel “very cute” while keeping the underlying love-letter page (content + layout) unchanged once the overlay dismisses.",
+      "featureId": "feature-move-the-four-selected-elements-so-they-appear-together-as-the-last-content-within-their-current-parent-container-preserving-their-internal-order-and-without-changing-any-other-parts-of-the-page-the-elements-to-move-are-exactly-those-located-at-these-xpaths-1-html-1-body-1-div-1-div-2-div-5-div-1-2-html-1-body-1-div-1-div-2-div-5-div-1-div-2-div-1-div-1-3-html-1-body-1-div-1-div-2-div-5-div-1-div-2-div-3-div-1-4-html-1-body-1-div-1-div-2-div-5-div-1-div-2-div-4-p-1",
+      "featureTitle": "Move the four selected elements so they appear together as the last content within their current parent container, preserving their internal order and without changing any other parts of the page. The elements to move are exactly those located at these XPaths: (1) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]`, (2) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]/div[2]/div[1]/div[1]`, (3) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]/div[2]/div[3]/div[1]`, (4) `/html[1]/body[1]/div[1]/div[2]/div[5]/div[1]/div[2]/div[4]/p[1]`.",
       "files": [
-        "frontend/src/components/CurtainCuteEntranceCard.tsx",
-        "frontend/src/components/CurtainEntranceOverlay.tsx",
-        "frontend/src/index.css"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -17,65 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-44"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-keep-the-entrance-overlay-headline-text-exactly-as-my-feelings-for-you-and-keep-the-headline-color-pinkish-avoid-red-for-the-headline",
-      "featureTitle": "Keep the entrance overlay headline text exactly as: \"my Feelings for you\" and keep the headline color pinkish (avoid red for the headline).",
-      "files": [
-        "frontend/src/components/CurtainCuteEntranceCard.tsx",
-        "frontend/src/components/CurtainEntranceOverlay.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-45"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-redesigned-cute-entrance-overlay-remains-fully-activatable-via-tap-click-and-keyboard-enter-space-and-dismisses-via-a-short-reveal-sequence-of-approximately-1-second-calling-the-existing-completion-callback-only-after-the-reveal-animation-finishes-with-a-fallback-timer-if-animation-transition-end-events-do-not-fire",
-      "featureTitle": "Ensure the redesigned cute entrance overlay remains fully activatable via tap/click and keyboard (Enter/Space) and dismisses via a short reveal sequence of approximately 1 second, calling the existing completion callback only after the reveal animation finishes (with a fallback timer if animation/transition end events do not fire).",
-      "files": [
-        "frontend/src/components/CurtainEntranceOverlay.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-46"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-preserve-accessibility-behavior-for-the-redesigned-cute-entrance-when-prefers-reduced-motion-reduce-is-enabled-avoid-the-motion-heavy-reveal-sequence-and-instead-dismiss-the-overlay-near-immediately-while-keeping-all-entrance-user-facing-text-in-english",
-      "featureTitle": "Preserve accessibility behavior for the redesigned cute entrance: when `prefers-reduced-motion: reduce` is enabled, avoid the motion-heavy reveal sequence and instead dismiss the overlay near-immediately while keeping all entrance user-facing text in English.",
-      "files": [
-        "frontend/src/components/CurtainCuteEntranceCard.tsx",
-        "frontend/src/components/CurtainEntranceOverlay.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-47"
+        "REQ-55"
       ],
       "confidence": "high"
     }
